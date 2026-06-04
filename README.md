@@ -63,44 +63,65 @@ make
 sudo make install
 ```
 
-## German translation / Deutsche Übersetzung
+## Translations
 
-**Note:** the German translation is machine-generated (produced by a large
-language model) and has not been fully reviewed by a human translator. Some
-wordings, puns, or cultural adaptations may be awkward or wrong. Corrections
-are welcome.
+**Note:** both translations below — German *and* Spanish — are
+machine-generated (produced by a large language model) and have not been fully
+reviewed by a human translator. Some wordings, puns, or cultural adaptations
+may be awkward or wrong. Corrections are welcome.
 
-This tree ships a fully German edition of the game alongside the English
-original. The normal `make` / `sudo make install` builds and installs both:
+This tree ships translated editions of the game alongside the English
+original. The normal `make` / `sudo make install` builds and installs all of
+them:
 
-  * `robotfindskitten-de` — the game with all on-screen text (instructions,
-    win and error messages) in German.
-  * `nki/deutsch.nki` — the German edition of the ~700 Non Kitten Items,
-    localized and adapted: English puns and US-cultural references have been
-    re-created so they land for a German-speaking player rather than being
-    translated word-for-word.
+| Language | Binary                 | Item file         | Data directory                        |
+|----------|------------------------|-------------------|---------------------------------------|
+| English  | `robotfindskitten`     | `nki/vanilla.nki` | `$(datadir)/games/robotfindskitten`    |
+| German   | `robotfindskitten-de`  | `nki/deutsch.nki` | `$(datadir)/games/robotfindskitten-de` |
+| Spanish  | `robotfindskitten-es`  | `nki/espanol.nki` | `$(datadir)/games/robotfindskitten-es` |
 
-The German binary reads its items from its own data directory
-(`$(datadir)/games/robotfindskitten-de`), kept separate from the English
-`robotfindskitten` items, so the two languages never mix once installed.
+Each translated binary carries all of its on-screen text (instructions, win
+and error messages) in its language, and the ~700 Non Kitten Items have been
+localized and adapted rather than translated word-for-word: English puns and
+US-cultural references have been re-created so they land for the target
+audience. Each binary reads its items from its own data directory, so the
+languages never mix once installed.
 
-### Playing in German
+### Playing in a translated language
 
-After `sudo make install`, run it from anywhere outside the source tree:
+After `sudo make install`, run the chosen binary from anywhere outside the
+source tree:
 
 ```
-robotfindskitten-de
+robotfindskitten-de      # German
+robotfindskitten-es      # Spanish
 ```
 
-To play in German straight from the build tree, point it at the single German
-file — the tree's `nki/` directory holds *both* languages, and the game would
-otherwise merge them:
+To play a translation straight from the build tree, point it at the single
+matching item file — the tree's `nki/` directory holds *all* languages, and
+the game would otherwise merge them:
 
 ```
 src/robotfindskitten-de -f nki/deutsch.nki
+src/robotfindskitten-es -f nki/espanol.nki
 ```
 
-Note: the German text uses UTF-8 umlauts, so a UTF-8 locale (e.g.
-`de_DE.UTF-8`) must be active. The German binary calls `setlocale(LC_ALL, "")`
-so that (n)curses renders umlauts correctly instead of as blank cells; if you
-see blanks, check that `locale charmap` reports `UTF-8`.
+Note: the translated text uses non-ASCII UTF-8 characters (umlauts, accents,
+`¡`, `¿`, …), so a UTF-8 locale (e.g. `de_DE.UTF-8` or `es_ES.UTF-8`) must be
+active. The translated binaries call `setlocale(LC_ALL, "")` so that (n)curses
+renders these correctly instead of as blank cells; if you see blanks, check
+that `locale charmap` reports `UTF-8`.
+
+### Adding another language
+
+The translated editions follow a fixed pattern, so a new language `xx` is
+additive — no existing files change:
+
+  1. `nki/<lang>.nki` — translate the items (copy `nki/vanilla.nki` as a base).
+  2. `src/robotfindskitten.xx.c` — copy `src/robotfindskitten.c`, translate the
+     handful of UI string literals, and add `setlocale(LC_ALL, "")` in `main()`.
+  3. `src/Makefile.am` — add `robotfindskitten-xx` to `execgames_PROGRAMS` with
+     its `_SOURCES` and a `_CPPFLAGS` pointing `SYSTEM_NKI_DIR` at its own dir.
+  4. `nki/Makefile.am` — add an `nkixxdir` / `nkixx_DATA` install pair and list
+     the file in `EXTRA_DIST`.
+  5. `.gitignore` — add `src/robotfindskitten-xx`.

@@ -4,6 +4,7 @@
   <name>robotfindskitten</name>
   <summary>Zen Simulation of robot finding kitten</summary>
   <summary xml:lang="de">Zen-Simulation, in der Roboter Kätzchen findet</summary>
+  <summary xml:lang="es">Simulación zen en la que robot encuentra a gatito</summary>
   <metadata_license>CC-BY-SA-4.0</metadata_license>
   <project_license>GPL-2.0-or-later</project_license>
   <description>
@@ -26,6 +27,15 @@
       endet. Andernfalls erhältst du eine kurze Beschreibung dessen, was du
       berührt hast.
     </p>
+    <p xml:lang="es">
+      En esta simulación, interpretas el papel de robot. Tu tarea es completar
+      la simulación encontrando a gatito, como es tu destino y, de hecho, tu
+      voluntad. Tú (robot) estás representado por el carácter # y te mueves con
+      las teclas de dirección tocando cosas. Si la cosa que tocas es gatito,
+      obtienes una pequeña y bonita animación (que era más bonita en la versión
+      de DOS) y la simulación termina. En caso contrario, obtienes una breve
+      descripción de aquello que has tocado.
+    </p>
   </description>
   <icon type="stock">robotfindskitten</icon>
   <screenshots>
@@ -41,5 +51,6 @@
   <provides>
     <binary>robotfindskitten</binary>
     <binary>robotfindskitten-de</binary>
+    <binary>robotfindskitten-es</binary>
   </provides>
 </component>
