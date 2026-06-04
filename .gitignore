@@ -27,5 +27,6 @@ src/.deps/
 src/Makefile
 src/Makefile.in
 src/robotfindskitten
-src/robotfindskitten.o
+src/robotfindskitten-de
+src/*.o
 stamp-h1

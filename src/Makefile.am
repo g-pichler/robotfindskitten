@@ -1,10 +1,13 @@
 execgamesdir = $(prefix)/games
-execgames_PROGRAMS = robotfindskitten
-
-AM_CPPFLAGS = -DSYSTEM_NKI_DIR=\"$(datadir)/games/robotfindskitten\"
+execgames_PROGRAMS = robotfindskitten robotfindskitten-de
 
 robotfindskitten_SOURCES = robotfindskitten.c
+robotfindskitten_CPPFLAGS = -DSYSTEM_NKI_DIR=\"$(datadir)/games/robotfindskitten\"
 #robotfindskitten_LDADD = -lncurses
+
+# German variant: translated UI, reads its own (German) NKI directory by default
+robotfindskitten_de_SOURCES = robotfindskitten.de.c
+robotfindskitten_de_CPPFLAGS = -DSYSTEM_NKI_DIR=\"$(datadir)/games/robotfindskitten-de\"
 
 # Run a static type check on the code
 cppcheck: robotfindskitten.c
