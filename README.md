@@ -62,3 +62,45 @@ Configure, make, install.
 make
 sudo make install
 ```
+
+## German translation / Deutsche Übersetzung
+
+**Note:** the German translation is machine-generated (produced by a large
+language model) and has not been fully reviewed by a human translator. Some
+wordings, puns, or cultural adaptations may be awkward or wrong. Corrections
+are welcome.
+
+This tree ships a fully German edition of the game alongside the English
+original. The normal `make` / `sudo make install` builds and installs both:
+
+  * `robotfindskitten-de` — the game with all on-screen text (instructions,
+    win and error messages) in German.
+  * `nki/deutsch.nki` — the German edition of the ~700 Non Kitten Items,
+    localized and adapted: English puns and US-cultural references have been
+    re-created so they land for a German-speaking player rather than being
+    translated word-for-word.
+
+The German binary reads its items from its own data directory
+(`$(datadir)/games/robotfindskitten-de`), kept separate from the English
+`robotfindskitten` items, so the two languages never mix once installed.
+
+### Playing in German
+
+After `sudo make install`, run it from anywhere outside the source tree:
+
+```
+robotfindskitten-de
+```
+
+To play in German straight from the build tree, point it at the single German
+file — the tree's `nki/` directory holds *both* languages, and the game would
+otherwise merge them:
+
+```
+src/robotfindskitten-de -f nki/deutsch.nki
+```
+
+Note: the German text uses UTF-8 umlauts, so a UTF-8 locale (e.g.
+`de_DE.UTF-8`) must be active. The German binary calls `setlocale(LC_ALL, "")`
+so that (n)curses renders umlauts correctly instead of as blank cells; if you
+see blanks, check that `locale charmap` reports `UTF-8`.

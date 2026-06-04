@@ -3,6 +3,7 @@
   <id>org.robotfindskitten.robotfindskitten</id>
   <name>robotfindskitten</name>
   <summary>Zen Simulation of robot finding kitten</summary>
+  <summary xml:lang="de">Zen-Simulation, in der Roboter Kätzchen findet</summary>
   <metadata_license>CC-BY-SA-4.0</metadata_license>
   <project_license>GPL-2.0-or-later</project_license>
   <description>
@@ -14,6 +15,16 @@
       thing you touch is kitten, you get a cute little animation (which
       was cuter in the DOS version) and the simulation ends. Otherwise,
       you get a brief description of what it is you touched.
+    </p>
+    <p xml:lang="de">
+      In dieser Simulation spielst du die Rolle von Roboter. Deine Aufgabe
+      ist es, die Simulation zu vollenden, indem du Kätzchen findest – so
+      ist es deine Bestimmung und dein Wille. Du (Roboter) wirst durch das
+      Zeichen # dargestellt und bewegst dich mit den Pfeiltasten, um Dinge
+      zu berühren. Berührst du Kätzchen, gibt es eine niedliche kleine
+      Animation (in der DOS-Version war sie niedlicher), und die Simulation
+      endet. Andernfalls erhältst du eine kurze Beschreibung dessen, was du
+      berührt hast.
     </p>
   </description>
   <icon type="stock">robotfindskitten</icon>
@@ -29,5 +40,6 @@
   </categories>
   <provides>
     <binary>robotfindskitten</binary>
+    <binary>robotfindskitten-de</binary>
   </provides>
 </component>
